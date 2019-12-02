@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import List from './List'
+import ItemForm from './ItemForm';
+import List from './List';
 import './App.css';
 
 class App extends Component {
@@ -10,20 +11,14 @@ class App extends Component {
       { id: 3, name: "Milk", inCart: false, },
     ]
   };
-
-  renderList = () => {
-    const { list,  } = this.state;
-    return (
-      <List name="Grocery List" items={list} />
-    );
-  };
   
   render() {
+    const { list } = this.state;
+    
     return (
       <div>
-        <ul>
-          { this.renderList() }
-        </ul>
+        <ItemForm />
+        <List name="Grocery List" items={list} />
       </div>
     );
   };
