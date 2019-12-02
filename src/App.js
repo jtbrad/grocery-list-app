@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import List from './List'
 import './App.css';
 
 class App extends Component {
@@ -12,8 +13,8 @@ class App extends Component {
 
   renderList = () => {
     const { list,  } = this.state;
-    return list.map( item => 
-      <li key={item.id}>{ item.name }</li>
+    return (
+      <List name="Grocery List" items={list} />
     );
   };
   
