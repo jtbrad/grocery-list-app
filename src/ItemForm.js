@@ -10,6 +10,8 @@ class ItemForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.props.addItem(this.state.name);
+    this.setState({ name: "" });
   };
 
   render() {

@@ -11,14 +11,40 @@ class App extends Component {
       { id: 3, name: "Milk", inCart: false, },
     ]
   };
+
+  getUniqeId = () => {
+    return Math.floor((1 + Math.random()) *0x10000).toString(16).substring(1);
+  };
+
+  addItem = (name) => {
+    const { list } = this.state;
+    const item = { name, id: this.getUniqeId(), inCart: false, }
+    this.setState({ list: [...list, item] });
+  };
+
+  handleClick = (id) => {
+    const { list } = this.state;
+    this.setState({
+      list: list.map( item => {
+        if (item.id === id) {
+          return {
+            ...item,
+            inCart: !item.inCart
+          }
+        }
+        return item;
+      })
+    });
+  };
+
   
   render() {
     const { list } = this.state;
     
     return (
       <div>
-        <ItemForm />
-        <List name="Grocery List" items={list} />
+        <ItemForm addItem={this.addItem} />
+        <List name="Grocery List" items={list} itemClick={this.handleClick} />
       </div>
     );
   };
